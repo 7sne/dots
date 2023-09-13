@@ -1,0 +1,15 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p shellcheck stylua
+# shellcheck shell=bash
+
+main() {
+  echo "Linting..."
+
+  stylua ./src --config-path ./.stylua.toml
+
+  shellcheck ./scripts/**
+
+  alejandra .
+}
+
+main "$@"
